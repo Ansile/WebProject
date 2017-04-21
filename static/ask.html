@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="./css/main.css" type="text/css" rel="stylesheet">
+</head>
+<body class="container-fluid">
+    <nav class="navbar navbar-default">
+        <div class="row">
+            <div class="container-fluid col-md-2">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#"><img class="logo" src="./img/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-4 header">
+                    <input type="text header" class="form-control search" placeholder="Search">
+            </div>
+            <div class="col-md-2 header">
+                <button type="button header" class="btn btn-success">Ask</button>
+            </div>
+            <div class="col-md-4 header margin-bottom">
+                <div class="row">
+                    <div class="col-md-2"><img src="./img/example.svg" class="img-limit"></div>
+                    <div class="col-md-6">
+                        <span>Dr.Pepper</span>
+                        <div>
+                            <a href="#">settings</a>
+                            <a class="margin-left" href="#">log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>New question</h2>
+            <div class="row margin-top">
+                <div class="col-md-2"><h4>Title</h4></div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="Title" placeholder="Enter your question here">
+                    <label class="control-label error" for="inputError">Title can't be empty!</label>
+                </div>
+            </div>
+            <div class="row margin-top">
+                <div class="col-md-2"><h4>Text</h4></div>
+                <div class="col-md-10">
+                    <textarea class="col-xs-40 submit form-control" name="auth_msg" placeholder="Enter the more detailed version of the question" rows="12" cols="45"></textarea>
+                    <label class="control-label error" for="inputError">Question can't be empty!</label>
+                </div>
+            </div>
+            <div class="row margin-top">
+                <div class="col-md-2"><h4>Tags</h4></div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="Insert tags separated by commas">
+                    <button type="button" class="btn btn-success margin-top">Ask</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2 sidebar">
+            <div class="sidebar-tags">
+                <h2>Popular tags</h2>
+                <span><a href="" style="color: red;">bender</a></span>
+                <span><a href="" style="color: blue;">black-jack</a></span>
+                <span><a href="" style="color: yellow;">php</a></span>
+                <span><a href="" style="color: black;">java</a></span>
+                <span><a href="" style="color: orange;">go</a></span>
+                <span><a href="" style="color: #ff3355;">ruby</a></span>
+            </div>
+            <div>
+                <h2>Best members</h2>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="">MrFreeman</a></li>
+                    <li class="list-group-item"><a href="">Bender</a></li>
+                    <li class="list-group-item"><a href="">Dr.House</a></li>
+                    <li class="list-group-item"><a href="">M.Zuckerberg</a></li>
+                    <li class="list-group-item"><a href="">F.Heisenberg</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>about</title>
+</head>
+<body>
+<p> Hello world!!!</p>
+<p> Request method: {{ method }}</p>
+{% if data %}
+<ul type="circle">
+<p>Options:</p>
+{% for key,value in data.items %}
+    <li>
+        {{ key }}={{ value }}
+    </li>
+{% empty %}
+        <li> Параметров нет</li>
+{% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
+

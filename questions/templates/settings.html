@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Settings: Example User</h2>
+    <div class="row">
+        <div class="col-md-2"><h5>Login</h5></div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" placeholder="Your Login" value="Current Login">
+        </div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>E-mail:</h5></div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" placeholder="Your E-mail" value="Current E-mail">
+        </div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>Nickname:</h5></div>
+        <div class="col-md-10">
+    		<input type="text" class="form-control" placeholder="Your Nickname" value="Current Nickname">
+    	</div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>Upload an avatar:</h5></div>
+        <div class="col-md-10">
+        	<img class="big-img" src="./img/example.svg">
+    		<input type="file" class="form-control margin-top" aria-describedby="basic-addon2" value="Dr.Pepper">
+    		<button type="button" class="btn btn-success margin-top">Save changes</button>
+    	</div>
+    </div>
+{% endblock content %} 

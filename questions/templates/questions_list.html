@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for q in questions %}
+        <div class="question">
+                <div class="row">
+                    <div class="col-md-2 question-left hidden-sm hidden-xs">
+                        <a href="">
+                            <img class="avatar" src="./img/example.svg">
+                        </a>
+                        <div class="question-author">{{q.author}}</div>
+                    </div>
+                    <div class="col-md-9">
+                    	<a href=""><h3> {{ q.title }} </h3></a>
+                        <div class="question-text"> {{ q.text }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row question-bottom">
+                    <div class="col-md-2 question-left">
+                    <span class="question-rating align">
+                                <a href=""><img class="vote" src="./img/upvote.png"></a>
+                                {{q.rating}}
+                                <a href=""><img class="vote" src="./img/downvote.png"></a>
+                            </span>
+                    </div>
+                    <div class="col-md-9">
+                        <a href="/question.html?id=1000">answer ({{q.rating}})</a>
+                        <span class="tags">Tags:
+                        {% for tag in q.tags %}
+	                        <a href="/tags/bender.html" class="question-tag">{{tag}}</a>
+	                    {% endfor %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+	<div class="row">
+        <div class="col-xs-5 margin-left">
+            <div class="row">
+                <span><button type="button" class="btn btn-success">1</button></span>
+                <span><button type="button" class="btn btn-success">2</button></span>
+                <span><button type="button" class="btn btn-success">3</button></span>
+                <span><button type="button" class="btn btn-success">4</button></span>
+                <span><button type="button" class="btn btn-success">...</button></span>
+                <span><button type="button" class="btn btn-success">31</button></span>
+            </div>
+        </div>
+	</div>
+{% endblock content %}
