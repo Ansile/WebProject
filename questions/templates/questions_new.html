@@ -1,0 +1,8 @@
+{% extends "questions_list.html" %}
+{% block title %}
+	AskGolubev
+{% endblock title %}
+{% block head %}
+	<span id="new">New questions</span>
+	<a href="{% url "hot" %}" id="hot">Hot questions</a>
+{% endblock head %}
