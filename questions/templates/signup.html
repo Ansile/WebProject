@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Signup
+{% endblock title %}
+{% block content %}
+    <h2>Signup</h2>
+    <h5 class="alert alert-danger">Sorry, this e-mail address was already registered!</h5>
+    <div class="row">
+        <div class="col-md-2"><h5>Login</h5></div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" placeholder="Enter preferred login">
+        </div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>E-mail:</h5></div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" placeholder="example@gmail.com">
+        </div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>Nickname:</h5></div>
+        <div class="col-md-10">
+    		<input type="text" class="form-control" placeholder="Enter preferred Nickname">
+    	</div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>Password:</h5></div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" placeholder="Enter a password">
+        </div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>Repeat password:</h5></div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" placeholder="And again">
+            <label class="control-label error" for="inputError">Passwords do not match!</label>
+        </div>
+    </div>
+    <div class="row margin-top">
+        <div class="col-md-2"><h5>Upload an avatar:</h5></div>
+        <div class="col-md-10">
+        	<img class="big-img" src="./img/example.svg">
+    		<input type="file" class="form-control margin-top" aria-describedby="basic-addon2" value="Dr.Pepper">
+    		<button type="button" class="btn btn-success margin-top">Register!</button>
+    	</div>
+    </div>
+{% endblock content %}

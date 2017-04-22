@@ -1,77 +1,78 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% block header %}
-            {% block style %}
-             	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-    			<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    			<link href="./css/main.css" type="text/css" rel="stylesheet">
-            {% endblock style %}
-            {% block js %}
-            {% endblock js %}
-        {% endblock header %}
-    </head>
-	
-    <body>
-    <body class="container-fluid">
-    <nav class="navbar navbar-default">
-        <div class="row">
-            <div class="container-fluid col-md-2">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="pass"><img class="logo" src="./img/logo.png" alt=""></a>
-                </div>
+<head>
+<meta charset="UTF-8">
+	<title>{% block title %}{% endblock title %}</title>
+    {% block style %}
+        {% load static %}
+     	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+		<link href="https://fonts.googleapis.com/css?family=Rob		oto" rel="stylesheet">
+		<link href="{% static 'css/main.css' %}" type="text/css" rel="stylesheet">
+    {% endblock style %}
+    {% block js %}
+    {% endblock js %}
+</head>
+
+<body>
+<body class="container-fluid">
+<nav class="navbar navbar-default">
+    <div class="row">
+        <div class="container-fluid col-md-2">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url "questions_new" %}"><img class="logo" src="{% static 'img/logo.png' %}" alt=""></a>
             </div>
-            <div class="col-md-4 header">
-                    <input type="text header" class="form-control search" placeholder="Search">
-            </div>
-	            <div class="col-md-2 header">
-                <button type="button header" class="btn btn-success">Ask</button>
-            </div>
-            <div class="col-md-4 header">
-            <!--Make if's for LOGIN/User profile-->
-            {% if loggedin %}
-            <div class="row">
-                    <div class="col-md-2"><img src="./img/example.svg" class="img-limit"></div>
-                    <div class="col-md-6">
-                        <span>Dr.Pepper</span>
-                        <div>
-                            <a href="#">settings</a>
-                            <a class="margin-left" href="#">log out</a>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
+        </div>
+        <div class="col-md-4 header">
+                <input type="text header" class="form-control search" placeholder="Search">
+        </div>
+            <div class="col-md-2 header">	
+            <button type="button header" class="btn btn-success">Ask</button>
+        </div>
+        <div class="col-md-4 header">
+        <!--Make if's for LOGIN/User profile-->
+        {% if loggedin %}
+			<div class="row">
+			    <div class="col-md-2"><img src="{% static 'img/example.svg' %}" class="img-limit"></div>
+			    <div class="col-md-6">
+			        <span>Dr.Pepper</span>
+			        <div>
+			            <a href="{% url "settings" %}">settings</a>
+			            <a class="margin-left" href="#">log out</a>
+			        </div>
+			    </div>
+			</div>
+        {% else %}
             <a href=""><p class="header-btn">Log In</p></a> 
             <a href=""><p class="header-btn">Register</p></a>	
-            {% endif %}
-            </div>
-        </div>
-    </nav>
-    <div class="col-sm-10">
-        {% block content %}
-        {% endblock content %}    
-    </div>
-    <div class="col-sm-2 sidebar">
-        <div class="sidebar-tags">
-            <h2>Popular tags</h2>
-            <span><a href="pass" style="color: red;">bender</a></span>
-            <span><a href="pass" style="color: blue;">black-jack</a></span>
-            <span><a href="pass" style="color: yellow;">php</a></span>
-            <span><a href="pass" style="color: black;">java</a></span>
-            <span><a href="pass" style="color: orange;">go</a></span>
-            <span><a href="pass" style="color: #ff3355;">ruby</a></span>
-        </div>
-        <div>
-            <h2>Best members</h2>
-            <ul class="list-group">
-                <li class="list-group-item"><a href="pass">MrFreeman</a></li>
-                <li class="list-group-item"><a href="pass">Bender</a></li>
-                <li class="list-group-item"><a href="pass">Dr.House</a></li>
-                <li class="list-group-item"><a href="pass">M.Zuckerberg</a></li>
-                <li class="list-group-item"><a href="pass">F.Heisenberg</a></li>
-            </ul>
+        {% endif %}
         </div>
     </div>
-    </body>
+</nav>
+<div class="col-sm-10">
+    {% block content %}
+    {% endblock content %}    
+</div>
+<div class="col-sm-2 sidebar">
+    <div class="sidebar-tags">
+        <h2>Popular tags</h2>
+        <span><a href="pass" style="color: red;">bender</a></span>
+        <span><a href="pass" style="color: blue;">black-jack</a></span>
+        <span><a href="pass" style="color: yellow;">php</a></span>
+        <span><a href="pass" style="color: black;">java</a></span>
+        <span><a href="pass" style="color: orange;">go</a></span>
+        <span><a href="pass" style="color: #ff3355;">ruby</a></span>
+    </div>
+    <div>
+        <h2>Best members</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="pass">MrFreeman</a></li>
+            <li class="list-group-item"><a href="pass">Bender</a></li>
+            <li class="list-group-item"><a href="pass">Dr.House</a></li>
+            <li class="list-group-item"><a href="pass">M.Zuckerberg</a></li>
+            <li class="list-group-item"><a href="pass">F.Heisenberg</a></li>
+        </ul>
+    </div>
+</div>
+</body>
 </html>
 

@@ -22,12 +22,26 @@ def about(request):
                   {'method': request.method,
                    'data': data})
 
-def questions_list(request):
-    return render(request, 'questions_list.html', {'questions': QUESTIONS.values(), 'loggedin': loggedin})
+def questions_new(request):
+    return render(request, 'questions_new.html', {'questions': QUESTIONS.values(), 'loggedin': loggedin})
 
+def hot(request):
+    return render(request, 'hot.html', {'questions': QUESTIONS.values(), 'loggedin': loggedin})
 
 def questions_detail(request, question_id):
     return render(request, 'questions_detail.html', {'question': QUESTIONS.get(question_id, {}), 'loggedin': loggedin})
 
+def tags(request):
+    return render(request, 'tags.html', {'questions': QUESTIONS.values(), 'loggedin': loggedin, 'tag': 'C++'})
+
 def settings(request):
-    return render(request, 'settings.html', {'questions': QUESTIONS.values(), 'loggedin': loggedin})
+    return render(request, 'settings.html', {'loggedin': loggedin})
+
+def signup(request):
+    return render(request, 'signup.html', {'loggedin': False})
+
+def authorization(request):
+    return render(request, 'authorization.html', {'loggedin': False})
+
+def ask(request):
+    return render(request, 'ask.html', {'loggedin': True})

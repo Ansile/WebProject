@@ -1,12 +1,14 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
+	{% block head %}
+	{% endblock head %}
     {% for q in questions %}
         <div class="question">
                 <div class="row">
                     <div class="col-md-2 question-left hidden-sm hidden-xs">
                         <a href="">
-                            <img class="avatar" src="./img/example.svg">
+                            <img class="avatar" src="{% static 'img/example.svg'%}">
                         </a>
                         <div class="question-author">{{q.author}}</div>
                     </div>
@@ -19,16 +21,16 @@
                 <div class="row question-bottom">
                     <div class="col-md-2 question-left">
                     <span class="question-rating align">
-                                <a href=""><img class="vote" src="./img/upvote.png"></a>
-                                {{q.rating}}
-                                <a href=""><img class="vote" src="./img/downvote.png"></a>
+                                <a href=""><img class="vote" src="{% static 'img/upvote.png' %}"></a>
+                                {{ q.rating }}
+                                <a href=""><img class="vote" src="{% static 'img/downvote.png' %}"></a>
                             </span>
                     </div>
                     <div class="col-md-9">
-                        <a href="/question.html?id=1000">answer ({{q.rating}})</a>
+                        <a href="">answer ({{ q.rating }})</a>
                         <span class="tags">Tags:
                         {% for tag in q.tags %}
-	                        <a href="/tags/bender.html" class="question-tag">{{tag}}</a>
+	                        <a href="/tags/bender.html" class="question-tag">{{ tag }}</a>
 	                    {% endfor %}
                         </span>
                     </div>
