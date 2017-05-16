@@ -2,16 +2,16 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from questions.managers import QuestionVoteManager, QuestionManager
 
 
 class Question(models.Model):
 	title = models.CharField(max_length=255, verbose_name="заголовок")
 	text = models.TextField(verbose_name="текст")
-	#is_published = models.BooleanField(default=False, blank=True, verbose_name="Публик")
 	author = models.ForeignKey(User, verbose_name="автор")
-	tags = models.ManyToManyField(u"Tag")
-	rating = models.IntegerField(verbose_name='рейтинг', default=0)
-	added_on=models.DateField(verbose_name='дата добавления')
+	tags = models.ManyToManyField("Tag")
+	rating_num = models.IntegerField(verbose_name='рейтинг', default=0)
+	added_on = models.DateTimeField(verbose_name='дата и время добавления')
 
 	def __str__(self):
 		return self.title
@@ -22,7 +22,7 @@ class Question(models.Model):
 
 
 class Profile(models.Model):
-	name = models.OneToOneField(User, verbose_name="пользователь", 
+	user = models.OneToOneField(User, verbose_name="пользователь", 
 		on_delete=models.CASCADE, primary_key=True)
 	avatar = models.FileField(verbose_name="аватар")
 
@@ -51,6 +51,8 @@ class Answer(models.Model):
 	question = models.ForeignKey(Question, verbose_name='связанный вопрос',
 	 on_delete=models.CASCADE)
 	is_correct = models.BooleanField(verbose_name='верный?', default=False)
+	rating_num = models.IntegerField(verbose_name='рейтинг', default=0)
+	added_on = models.DateTimeField(blank=True, auto_now_add=True, verbose_name='дата и время добавления')
 
 	def __str__(self):
 		return 'Comment №{number} by {user}'.format(number=self.pk, user='Username')
@@ -58,3 +60,46 @@ class Answer(models.Model):
 	class Meta:
 		verbose_name = 'ответ'
 		verbose_name_plural = 'ответы'
+
+
+class Vote (models.Model):
+	voted_by = models.ForeignKey(User, verbose_name='оценено пользователем')
+	is_like = models.BooleanField(verbose_name='верный', default=True)
+
+	def __str__(self):
+		return ("дизлайк", "лайк")[is_like] + "пользователя" + self.voted_by.username
+
+	class Meta:
+		abstract=True
+		verbose_name = "оценка"
+		verbose_name_plural = "оценки"
+
+
+class QuestionVote (Vote):
+	question = models.ForeignKey(Question, verbose_name='оцененный вопрос')
+
+	objects = QuestionVoteManager()
+
+	class Meta:
+		unique_together = ("question", "voted_by")
+	
+
+
+class AnswerVote (Vote):
+	answer = models.ForeignKey(Answer, verbose_name='оцененный ответ')
+	
+	class Meta:
+		unique_together = ("answer", "voted_by")
+
+
+
+	    
+# SELECT CONCAT("ALTER TABLE ",TABLE_SCHEMA,".",TABLE_NAME," CHARACTER SET utf32 COLLATE utf32_general_ci;   ",
+#     "ALTER TABLE ",TABLE_SCHEMA,".",TABLE_NAME," CONVERT TO CHARACTER SET utf32 COLLATE utf32_general_ci;  ") 
+#     AS alter_sql
+# FROM information_schema.TABLES
+# WHERE TABLE_SCHEMA = "questionsdb";
+
+# CREATE DATABASE questionsdb
+#   DEFAULT CHARACTER SET utf8
+#   DEFAULT COLLATE utf8_general_ci;
