@@ -22,15 +22,15 @@
                     <div class="col-md-2 question-left">
                     <span class="question-rating align">
                                 <a href=""><img class="vote" src="{% static 'img/upvote.png' %}"></a>
-                                {{ q.rating }}
+                                {{ q.rating_num }}
                                 <a href=""><img class="vote" src="{% static 'img/downvote.png' %}"></a>
                             </span>
                     </div>
                     <div class="col-md-9">
                         <a href="">answer ({{ q.rating }})</a>
                         <span class="tags">Tags:
-                        {% for tag in q.tags %}
-	                        <a href="/tags/bender.html" class="question-tag">{{ tag }}</a>
+                        {% for tag in q.tags.all %}
+	                        <a href="/tag/{{ tag.name }}" class="question-tag">{{ tag }}</a>
 	                    {% endfor %}
                         </span>
                     </div>
@@ -40,12 +40,18 @@
 	<div class="row">
         <div class="col-xs-5 margin-left">
             <div class="row">
-                <span><button type="button" class="btn btn-success">1</button></span>
-                <span><button type="button" class="btn btn-success">2</button></span>
-                <span><button type="button" class="btn btn-success">3</button></span>
-                <span><button type="button" class="btn btn-success">4</button></span>
-                <span><button type="button" class="btn btn-success">...</button></span>
-                <span><button type="button" class="btn btn-success">31</button></span>
+                <nav><ul class="pagination">
+                {% for p in paginator.page_range %}
+                    {% if p == page %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href="{{ paginator.baseurl }}{{ p }}">
+                        <button type="button" class="btn btn-success">{{ p }}</button></a>
+                    </li>
+                {% endfor %}
+                </ul></nav>
             </div>
         </div>
 	</div>

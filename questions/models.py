@@ -11,7 +11,9 @@ class Question(models.Model):
 	author = models.ForeignKey(User, verbose_name="автор")
 	tags = models.ManyToManyField("Tag")
 	rating_num = models.IntegerField(verbose_name='рейтинг', default=0)
-	added_on = models.DateTimeField(verbose_name='дата и время добавления')
+	added_on = models.DateTimeField(verbose_name='дата и время добавления', auto_now_add=True)
+
+	objects = QuestionManager()
 
 	def __str__(self):
 		return self.title
@@ -24,7 +26,7 @@ class Question(models.Model):
 class Profile(models.Model):
 	user = models.OneToOneField(User, verbose_name="пользователь", 
 		on_delete=models.CASCADE, primary_key=True)
-	avatar = models.FileField(verbose_name="аватар")
+	avatar = models.ImageField(verbose_name="аватар")
 
 	def __str__(self):
 		return self.user.name
@@ -49,7 +51,7 @@ class Answer(models.Model):
 	content = models.TextField(verbose_name='текст ответа')
 	author = models.ForeignKey(User, verbose_name='автор', on_delete=models.CASCADE)
 	question = models.ForeignKey(Question, verbose_name='связанный вопрос',
-	 on_delete=models.CASCADE)
+								 on_delete=models.CASCADE)
 	is_correct = models.BooleanField(verbose_name='верный?', default=False)
 	rating_num = models.IntegerField(verbose_name='рейтинг', default=0)
 	added_on = models.DateTimeField(blank=True, auto_now_add=True, verbose_name='дата и время добавления')
@@ -67,10 +69,10 @@ class Vote (models.Model):
 	is_like = models.BooleanField(verbose_name='верный', default=True)
 
 	def __str__(self):
-		return ("дизлайк", "лайк")[is_like] + "пользователя" + self.voted_by.username
+		return ("дизлайк", "лайк")[self.is_like] + "пользователя" + self.voted_by.username
 
 	class Meta:
-		abstract=True
+		abstract = True
 		verbose_name = "оценка"
 		verbose_name_plural = "оценки"
 
@@ -84,22 +86,8 @@ class QuestionVote (Vote):
 		unique_together = ("question", "voted_by")
 	
 
-
 class AnswerVote (Vote):
 	answer = models.ForeignKey(Answer, verbose_name='оцененный ответ')
 	
 	class Meta:
 		unique_together = ("answer", "voted_by")
-
-
-
-	    
-# SELECT CONCAT("ALTER TABLE ",TABLE_SCHEMA,".",TABLE_NAME," CHARACTER SET utf32 COLLATE utf32_general_ci;   ",
-#     "ALTER TABLE ",TABLE_SCHEMA,".",TABLE_NAME," CONVERT TO CHARACTER SET utf32 COLLATE utf32_general_ci;  ") 
-#     AS alter_sql
-# FROM information_schema.TABLES
-# WHERE TABLE_SCHEMA = "questionsdb";
-
-# CREATE DATABASE questionsdb
-#   DEFAULT CHARACTER SET utf8
-#   DEFAULT COLLATE utf8_general_ci;
